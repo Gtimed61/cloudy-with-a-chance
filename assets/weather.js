@@ -1,136 +1,144 @@
+var conditions = document.querySelector('#input');
 var houston = document.getElementById("hou-button");
 var dallas = document.getElementById("dal-button");
-var austin = document.getElementById("aus-button");
 var chicago = document.getElementById("chi-button");
 var newyork = document.getElementById("ny-button");
 var losangeles = document.getElementById("la-button");
 var miami = document.getElementById("mia-button");
-var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=Houston&units=imperial&appid=3b8d4b0b0f8b1c1c8c1c8c1c8c1c8c1c";
+var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid=76b386341da5821538de1905b8013fcd';
 
 function getHou() {
-    var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + hou + "&appid=2f8b5b0b1b1b1b1b1b1b1b1b1b1b1b1b";
-    $("#hou-button").empty();        
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=29.7604&lon=95.3698&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();        
 fetch(requestUrl)
 .then(function (response) {
     return response.json();
 })
-.then(function ({Houston}) {
-    console.log(Houston);
-for (var i = 0; i < Houston.length; i++) {
-    var hou = Houston[i];
-    var houEl = document.createElement("div");
-    houEl.classList = "hou";
-    houEl.textContent = hou;
-    houEl.appendChild(houEl);
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
 }
 });
 }
 
 houston.addEventListener("click", getHou);
 
-//function getDal() {
-
-
-
-/* //API Key: 7a70829eed4249369e766b2485bafa8d
-var wineList = document.getElementById('inputbox');
-var cabButton = document.getElementById('cab-button');
-var pinotButton = document.getElementById('pinot-button');
-var ChardonnayButton = document.getElementById('char-button');
-var merlotButton = document.getElementById('mer-button');
-var requestUrl = "https://api.spoonacular.com/food/wine/recommendation?apiKey=7a70829eed4249369e766b2485bafa8d";
-//Cabernet, Pinot Grigio, Chardonnay, Merlot
-
-
-//for Cabernet recommendation
-
-function getCab() {
-    var requestUrl = "https://api.spoonacular.com/food/wine/recommendation?apiKey=7a70829eed4249369e766b2485bafa8d&wine=cabernet_sauvignon&number=10";
-    $('#inputbox').empty();
+function getDal() {
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=32.7767&lon=96.7970&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();
 fetch(requestUrl)
 .then(function (response) {
     return response.json();
-})
-.then(function ({recommendedWines}) {
-    console.log(recommendedWines);
-    for (var i = 0; i < recommendedWines.length; i++) {
-        var listItem = document.createElement('h2');
-        var winePrice = document.createElement('li');
-        listItem.textContent = recommendedWines[i].title;
-        winePrice.textContent = recommendedWines[i].price;
-        wineList.appendChild(listItem);
-        wineList.appendChild(winePrice);
-    }
-});
+}
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
+}
+}));
 }
 
-cabButton.addEventListener('click', getCab);
+dallas.addEventListener("click", getDal);
 
-//for Pinot Grigio recommendation
-function getPinot() {
-    var requestUrl = "https://api.spoonacular.com/food/wine/recommendation?apiKey=7a70829eed4249369e766b2485bafa8d&wine=pinot_grigio&number=10";
-    $('#inputbox').empty();
+function getChi() {
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=41.8781&lon=87.6298&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();
 fetch(requestUrl)
 .then(function (response) {
     return response.json();
-})
-.then(function ({recommendedWines}) {
-    console.log(recommendedWines);
-    for (var i = 0; i < recommendedWines.length; i++) {
-        var listItem = document.createElement('h2');
-        var winePrice = document.createElement('li');
-        listItem.textContent = recommendedWines[i].title;
-        winePrice.textContent = recommendedWines[i].price;
-        wineList.appendChild(listItem);
-        wineList.appendChild(winePrice);
-    }
-});
+}
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
+}
+}));
 }
 
-pinotButton.addEventListener('click', getPinot);
+chicago.addEventListener("click", getChi);
 
-//for Chardonnay recommendation
-function getChardonnay() {
-    var requestUrl = "https://api.spoonacular.com/food/wine/recommendation?apiKey=7a70829eed4249369e766b2485bafa8d&wine=chardonnay&number=10";
-    $('#inputbox').empty();
-    fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function ({recommendedWines}) {
-    console.log(recommendedWines);
-    for (var i = 0; i < recommendedWines.length; i++) {
-        var listItem = document.createElement('h2');
-        var winePrice = document.createElement('li');
-        listItem.textContent = recommendedWines[i].title;
-        winePrice.textContent = recommendedWines[i].price;
-        wineList.appendChild(listItem);
-        wineList.appendChild(winePrice);
-    }
-});
+function getNy() {
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=40.7128&lon=74.0060&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();
+fetch(requestUrl)
+.then(function (response) {
+    return response.json();
+}
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
+}
+}));
 }
 
-ChardonnayButton.addEventListener('click', getChardonnay);
+newyork.addEventListener("click", getNy);
 
-//for Merlot recommendation
-function getMerlot() {
-    var requestUrl = "https://api.spoonacular.com/food/wine/recommendation?apiKey=7a70829eed4249369e766b2485bafa8d&wine=merlot&number=10";
-    $('#inputbox').empty();
-    fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function ({recommendedWines}) {
-    console.log(recommendedWines);
-    for (var i = 0; i < recommendedWines.length; i++) {
-        var listItem = document.createElement('h2');
-        var winePrice = document.createElement('li');
-        listItem.textContent = recommendedWines[i].title;
-        winePrice.textContent = recommendedWines[i].price;
-        wineList.appendChild(listItem);
-        wineList.appendChild(winePrice);
-    }
-});
+function getLa() {
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=34.0522&lon=118.2437&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();
+fetch(requestUrl)
+.then(function (response) {
+    return response.json();
+}
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
+}
+}));
 }
 
-merlotButton.addEventListener('click', getMerlot);*/
+losangeles.addEventListener("click", getLa);
+
+function getMia() {
+    var requestUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=25.7617&lon=80.1918&appid=76b386341da5821538de1905b8013fcd';
+    $('#input').empty();
+fetch(requestUrl)
+.then(function (response) {
+    return response.json();
+}
+.then(function ({conditions}) {
+    console.log(conditions);
+for (var i = 0; i < conditions.length; i++) {
+    var listItem = document.createElement('h2');
+    var report = document.createElement('li');
+    listItem.textContent = conditions[i].title;
+    report.textContent = conditions[i].weather;
+    conditions.appendChild(listItem);
+    conditions.appendChild(report);
+}
+}));
+}
+
+miami.addEventListener("click", getMia);
+
+
+
